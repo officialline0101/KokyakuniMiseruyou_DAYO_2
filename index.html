@@ -989,6 +989,19 @@
             if (savedPhone) document.getElementById('phone').value = savedPhone;
         });
 
+// 性別の保存値を取得して反映
+const savedGender = localStorage.getItem('selectedGender');
+if (savedGender) {
+    if (savedGender === '1回目') {
+        document.getElementById('firstVisit').classList.add('active');
+        visitCount = '1回目';
+    }
+    if (savedGender === '2回目以降') {
+        document.getElementById('repeatVisit').classList.add('active');
+        visitCount = '2回目以降';
+    }
+}
+
         // スムーズスクロール
         document.querySelectorAll('.side-nav a').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -1241,6 +1254,12 @@
             document.getElementById('repeatVisit').classList.remove('active');
             element.classList.add('active');
             visitCount = element.innerText;
+
+    // 選択された性別を取得して保存
+    visitCount = element.innerText;
+    localStorage.setItem('selectedGender', visitCount);
+
+    console.log('選択された性別:', visitCount);
 
             // 選択された訪問回数に対応する時間を取得
             selectedVisitTime = visitTimes[visitCount];
