@@ -249,31 +249,35 @@
             color: #141414;
         }
 
-/* 二列レイアウトはそのまま */
+/* ベース：二列レイアウトそのまま（PC/タブレットは自由） */
 .irradiations {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  gap: 8px 10px;
+  gap: 8px 10px; /* 縦:8px / 横:10px */
 }
 
+/* ボタン共通 */
 .irradiations button {
-  flex: 0 0 calc(50% - 5px);
+  /* 可変幅（PC/タブレット） */
+  flex: 0 0 auto;
   width: auto;
+  min-width: 0;             /* はみ出し防止（iOS対策） */
+  box-sizing: border-box;
+
   padding: 8px 6px;
-  font-size: 12.5px;
+  font-size: 11.5px;
   line-height: 1.2;
   white-space: normal;
   text-align: center;
-  box-sizing: border-box;
 
-  /* ▼ 下にテキストを入れるための縦積み */
+  /* 下に説明テキストを積む */
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-/* 下1行テキスト → 2行まで許可＆省略（三点リーダ） */
+/* 下1行テキスト（data-note）→ 最大3行で省略 */
 .irradiations button::after {
   content: attr(data-note);
   display: -webkit-box;
@@ -281,8 +285,8 @@
   -webkit-box-orient: vertical;
   overflow: hidden;
 
-  /* 改行コード（LF）を描画する */
-  white-space: pre-line;        /* ← これを追加 */
+  /* 改行(LF)を反映 */
+  white-space: pre-line;
   line-height: 1.3;
   max-height: calc(1.3em * 3);
   width: 100%;
@@ -292,13 +296,20 @@
   color: #666;
 }
 
-/* 念のため：ボタン内で縦積み */
-.irradiations button {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
+/* ▼スマホ（横幅768px以下）は“必ず2列” */
+@media (max-width: 768px) {
+  .irradiations {
+    gap: 10px; /* 指で押しやすいよう少し広め */
+  }
 
+  .irradiations button {
+    /* 2列＝それぞれ約50%幅（横gap10pxの半分を相殺） */
+    flex: 0 0 calc(50% - 5px);
+    max-width: calc(50% - 5px);
+    font-size: 12px;  /* 視認性を少しUP */
+    line-height: 1.25;
+  }
+}
         .menu-sections {
             display: flex;
             flex-direction: column;
@@ -1241,7 +1252,7 @@
         <button type="button" onclick="selectirradiations(this)"
                 data-price="15000" data-note="料金：8000円">ナチュラル（80束以内）</button>
         <button type="button" onclick="selectirradiations(this)"
-                data-price="15000" data-note="料金：10000円">スタンダート（140束以内）</button>
+                data-price="15000" data-note="料金：10000円">スタンダート<br>（140束以内）</button>
         <button type="button" onclick="selectirradiations(this)"
                 data-price="15000" data-note="料金：12000円">付け放題（フル装着）</button>
       </div>
@@ -1288,11 +1299,7 @@
 
   <div class="symptoms">
     <!-- フラットラッシュ（セカンド） -->
-    <button type="button"
-            onclick="selectSymptom(this, 'treatment16')"
-            data-category="まつげエクステ" data-price="4900">
-      フラットラッシュ
-    </button>
+    <button type="button" onclick="selectSymptom(this, 'treatment16')" data-category="まつげエクステ" data-price="4900">フラットラッシュ</button>
 
     <div class="option-group" data-for="treatment16" style="display:none;">
       <div class="labeltyuuou">
@@ -1313,22 +1320,18 @@
     </div>
 
     <!-- デザインキープラッシュ（セカンド） -->
-    <button type="button"
-            onclick="selectSymptom(this, 'treatment17')"
-            data-category="まつげエクステ" data-price="4900">
-      デザインキープラッシュ
-    </button>
+    <button type="button" onclick="selectSymptom(this, 'treatment17')" data-category="まつげエクステ" data-price="4900">デザインキープラッシュ</button>
 
     <div class="option-group" data-for="treatment17" style="display:none;">
       <div class="labeltyuuou">
         <span class="highlight-text">デザインキープラッシュオプション<br>お選びください</span>
       </div>
       <div class="irradiations">
-        <button type="button" onclick="selectirradiations(this)" data-price="15000" data-note="料金：6500円">３週間以内ナチュラルリペア</button>
-        <button type="button" onclick="selectirradiations(this)" data-price="15000" data-note="料金：8000円">３週間以内スタンダートリペア</button>
+        <button type="button" onclick="selectirradiations(this)" data-price="15000" data-note="料金：6500円">３週間以内<br>ナチュラルリペア</button>
+        <button type="button" onclick="selectirradiations(this)" data-price="15000" data-note="料金：8000円">３週間以内<br>スタンダートリペア</button>
         <button type="button" onclick="selectirradiations(this)" data-price="15000" data-note="料金：9000円">３週間以内付け放題</button>
-        <button type="button" onclick="selectirradiations(this)" data-price="15000" data-note="料金：7000円">4週間以内ナチュラルリペア</button>
-        <button type="button" onclick="selectirradiations(this)" data-price="15000" data-note="料金：9000円">4週間以内スタンダートリペア</button>
+        <button type="button" onclick="selectirradiations(this)" data-price="15000" data-note="料金：7000円">4週間以内<br>ナチュラルリペア</button>
+        <button type="button" onclick="selectirradiations(this)" data-price="15000" data-note="料金：9000円">4週間以内<br>スタンダートリペア</button>
         <button type="button" onclick="selectirradiations(this)" data-price="15000" data-note="料金：10000円">4週間以内付け放題</button>
       </div>
     </div>
@@ -1414,7 +1417,7 @@
 
         document.addEventListener('DOMContentLoaded', function () {
             liff.init({
-                liffId: '2005254357-zKma9BZk'
+                liffId: '2008086274-NrWAZpbk'
             }).then(() => {
                 console.log('LIFF初期化成功');
             }).catch((err) => {
@@ -2200,13 +2203,17 @@ function removeSymptom(button) {
                 return;
             }
 
+            
+
             // selectedSymptomを文字列に整形
             const selectedSymptomText = formData.selectedSymptom
                 ? formData.selectedSymptom.map(item => `${item.name}`).join(',')
                 : 'メニュー未選択';
 
-            // irradiationsCountの整形（nullチェック）
-            const irradiationsText = formData.irradiationsCount || 'なし';
+// irradiationsCountの整形（nullチェック & 改行削除）
+const irradiationsText = formData.irradiationsCount
+    ? formData.irradiationsCount.toString().replace(/<br\s*\/?>|\r?\n/g, '')
+    : 'なし';
 
             liff.sendMessages([{
                 type: 'text',
@@ -2242,7 +2249,7 @@ function removeSymptom(button) {
                 return;
             }
 
-            const url = 'https://script.google.com/macros/s/AKfycbwCxnJaxGZ46c3TnnesuZcD_zuxuVoSHoDHo5MxkRzChcK5vZDwBs4HstzkXO-KLyuDYA/exec' +
+            const url = 'https://script.google.com/macros/s/AKfycbxO5Jsddo9FElHL5rHtnMfPWj7DqFjRBh-IqTlN3CTHGTJyYkl9hvrr7E4WMHx1uaA5zQ/exec' +
                 `?startTime=${startTime.toISOString()}&endTime=${endTime.toISOString()}`;
 
             try {
