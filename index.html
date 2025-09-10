@@ -1235,6 +1235,9 @@
         <span class="highlight-text">フラットラッシュオプション<br>お選びください</span>
       </div>
       <div class="irradiations">
+        <button type="button" onclick="selectirradiations(this)" data-price="15000" data-note="料金：6,500円">フラット80本 (60分)</button>
+        <button type="button" onclick="selectirradiations(this)" data-price="15000" data-note="料金：7,500円">フラット100本 (60分)</button>
+        <button type="button" onclick="selectirradiations(this)" data-price="15000" data-note="料金：8,000円">フラット120本 (90分)</button>
         <button type="button" onclick="selectirradiations(this)" data-price="15000" data-note="料金：9,000円">メニューつけ放題</button>
       </div>
       <div class="info-textkugiri">　　　　　　　　　　　　　　　　　</div>
@@ -1285,6 +1288,7 @@
             </div>
             <div class="symptoms">
                 <button type="button" onclick="selectSymptom(this, 'treatment13')" data-category="まつ毛パーマ" data-price="0">まつげパーマ（前回から６週間以内）</button>
+                <button type="button" onclick="selectSymptom(this, 'treatment22')" data-category="まつ毛パーマ" data-price="0">まつげパーマ（前回から６週間以上）</button>
                 <button type="button" onclick="selectSymptom(this, 'treatment14')" data-category="まつ毛パーマ" data-price="0">前回から６週間以内<br>まつげパーマ＋アイブロウWAX</button>
                 <button type="button" onclick="selectSymptom(this, 'treatment15')" data-category="まつ毛パーマ" data-price="0">前回から６週間以上<br>まつげパーマ＋アイブロウWAX</button>
                 <button type="button" onclick="selectSymptom(this, 'treatment19')" data-category="まつ毛パーマ" data-price="0">前回から６週間以内<br>まつげパーマ＋ハリウッドブロウリフト</button>
@@ -1299,7 +1303,7 @@
 
   <div class="symptoms">
     <!-- フラットラッシュ（セカンド） -->
-    <button type="button" onclick="selectSymptom(this, 'treatment16')" data-category="まつげエクステ" data-price="4900">フラットラッシュ</button>
+    <button type="button" onclick="selectSymptom(this, 'treatment16')" data-category="まつげエクステ" data-price="4900">フラットラッシュ.</button>
 
     <div class="option-group" data-for="treatment16" style="display:none;">
       <div class="labeltyuuou">
@@ -1329,10 +1333,10 @@
       <div class="irradiations">
         <button type="button" onclick="selectirradiations(this)" data-price="15000" data-note="料金：6500円">３週間以内<br>ナチュラルリペア</button>
         <button type="button" onclick="selectirradiations(this)" data-price="15000" data-note="料金：8000円">３週間以内<br>スタンダートリペア</button>
-        <button type="button" onclick="selectirradiations(this)" data-price="15000" data-note="料金：9000円">３週間以内付け放題</button>
+        <button type="button" onclick="selectirradiations(this)" data-price="15000" data-note="料金：9000円">３週間以内<br>付け放題リペア</button>
         <button type="button" onclick="selectirradiations(this)" data-price="15000" data-note="料金：7000円">4週間以内<br>ナチュラルリペア</button>
         <button type="button" onclick="selectirradiations(this)" data-price="15000" data-note="料金：9000円">4週間以内<br>スタンダートリペア</button>
-        <button type="button" onclick="selectirradiations(this)" data-price="15000" data-note="料金：10000円">4週間以内付け放題</button>
+        <button type="button" onclick="selectirradiations(this)" data-price="15000" data-note="料金：10000円">4週間以内<br>付け放題リペア</button>
       </div>
     </div>
   </div>
@@ -1453,10 +1457,15 @@
             'フル付け替え（90分）': 90,
             '３週間以内ナチュラルリペア': 0,
             '３週間以内スタンダートリペア': 0,
-            '３週間以内付け放題': 0,
+            '３週間以内付け放題リペア': 0,
             '4週間以内ナチュラルリペア': 0,
             '4週間以内スタンダートリペア': 0,
-            '4週間以内付け放題': 0,
+            '4週間以内付け放題リペア': 0,
+            'フラット80本 (60分)': 0,
+            'フラット100本 (60分)': 0,
+            'フラット120本 (90分)': 30,
+            'aaaaaaaaaa': 0,
+            'aaaaaaaaaa': 0,
             '80本 (60分)': 0,
             '80本 (90分)': 0,
             '100本 (60分)': 0,
@@ -1467,6 +1476,7 @@
             '160本 (120分)': 30,
             '100本.(60分)': 10,
             '120本.(60分)': 30,
+            'メニューつけ放題': 20,
             '付け放題 (90分)': 30
         };
 
@@ -1474,6 +1484,7 @@
 
         let menuTimes = {
             'デザインキープラッシュ': 0,
+            'まつげパーマ（前回から６週間以上）': 75,
             'まつげパーマ': 75,
             'まつげパーマ（前回から６週間以内）': 75,
             'アイブロウWAX': 60,
@@ -1488,6 +1499,7 @@
             '前回から６週間以内まつげパーマ＋ハリウッドブロウリフト': 120,
             '前回から６週間以上まつげパーマ＋ハリウッドブロウリフト': 120,
             'フラットラッシュ': 70,
+            'フラットラッシュ.': 0,
             'ボリュームラッシュ': 70,
             'バインドロック': 90,
             'リペア(付け足し)': 60,
@@ -1730,14 +1742,19 @@ function selectSymptom(button, treatmentId) {
     return;
   }
 
-  // 選択の再構築（本体のみ）
-  activeMain.forEach((btn) => {
-    const name = btn.textContent;
-    const category = btn.getAttribute('data-category');
-    selectedSymptom.push({ category, name });
-    selectedMenuTime += (window.menuTimes?.[name] || 0);
-    menuPrice += parseInt(btn.getAttribute('data-price'), 10) || 0;
-  });
+activeMain.forEach((btn) => {
+  const rawName = btn.textContent;
+  const name = rawName.replace(/\s+/g, '').trim(); // 改行・空白を除去
+  const category = btn.getAttribute('data-category');
+
+  selectedSymptom.push({ category, name: rawName.trim() });
+  
+  // menuTimes から所要時間を取得
+  selectedMenuTime += (menuTimes[name] || 0);
+
+  // 金額も取得
+  menuPrice += parseInt(btn.getAttribute('data-price'), 10) || 0;
+});
 
   // カレンダー更新
   fetchAvailability?.(currentDate);
@@ -1758,7 +1775,16 @@ function selectSymptom(button, treatmentId) {
                 } else if (treatmentId === 'treatment5') {
                     treatmentText.innerHTML = `<div style="text-align: left;"></div><div style="text-align: right;"><strong>料金：12,500円<br>所要時間：120分</strong></div>`;
                 } else if (treatmentId === 'treatment6') {
-                    treatmentText.innerHTML = ``;
+    // 画像だけを表示（テキストは出さない）
+    treatmentText.innerHTML = `
+        <figure style="margin:8px 0;">
+            <img
+              src="https://www.dropbox.com/scl/fi/g65e9qhy3n9a1h2vg886v/S__17350877-1.jpg?rlkey=1fj0dohdisog0jmiaft9j9jda&st=6qq48j9g&raw=1"
+              alt="料金表 2025"
+              style="width:100%;height:auto;border-radius:6px;display:block;"
+              loading="lazy"
+            >
+        </figure>`;
                 } else if (treatmentId === 'treatment7') {
                     treatmentText.innerHTML = ``;
                 } else if (treatmentId === 'treatment8') {
@@ -1794,7 +1820,16 @@ function selectSymptom(button, treatmentId) {
             >
         </figure>`;
                 } else if (treatmentId === 'treatment17') {
-                    treatmentText.innerHTML = ``;
+    // 画像だけを表示（テキストは出さない）
+    treatmentText.innerHTML = `
+        <figure style="margin:8px 0;">
+            <img
+              src="https://www.dropbox.com/scl/fi/g65e9qhy3n9a1h2vg886v/S__17350877-1.jpg?rlkey=1fj0dohdisog0jmiaft9j9jda&st=6qq48j9g&raw=1"
+              alt="料金表 2025"
+              style="width:100%;height:auto;border-radius:6px;display:block;"
+              loading="lazy"
+            >
+        </figure>`;
                 } else if (treatmentId === 'treatment18') {
                     treatmentText.innerHTML = `<div style="text-align: left;">自眉を活UP</div><div style="text-align: right;"><br><strong>料金：50円<br>所要時間：6分</strong></div>`;
                 } else if (treatmentId === 'treatment19') {
@@ -1808,8 +1843,8 @@ function selectSymptom(button, treatmentId) {
     <span style="font-size: 0.8em;">・Wピーリング 18,500円</span></div><div style="text-align: right;"></div>`;
                 } else if (treatmentId === 'treatment21') {
                     treatmentText.innerHTML = `<div style="text-align: left;"><div style="text-align: right;"><strong>料金：12,500円<br>所要時間：120分</strong></div>`;
-                } else if (treatmentId === 'treatment2') {
-                    treatmentText.innerHTML = `<div style="text-align: left;">自眉を活UP</div><div style="text-align: right;"><br><strong>料金：50円<br>所要時間：6分</strong></div>`;
+                } else if (treatmentId === 'treatment22') {
+                    treatmentText.innerHTML = `<div style="text-align: left;">▶︎４Dflow<br>最高峰のダメージレスパーマ<br>マツエクと同時施術も可能です◎</div><div style="text-align: right;"><br><strong>料金：7,500円<br>所要時間：60分</strong></div>`;
 
                 } else {
                     treatmentText.innerHTML = '';
